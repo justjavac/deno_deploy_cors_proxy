@@ -26,6 +26,7 @@ async function handleRequest(request: Request) {
   const url = pathname.substr(1);
 
   if (isUrl(url)) {
+    console.log("proxy to %s", url);
     const corsHeaders = addCorsIfNeeded(new Response());
     if (request.method.toUpperCase() === "OPTIONS") {
       return new Response(null, { headers: corsHeaders });
