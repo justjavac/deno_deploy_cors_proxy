@@ -1,3 +1,5 @@
+import { serve } from "https://deno.land/std@0.140.0/http/server.ts";
+
 function addCorsIfNeeded(response: Response) {
   const headers = new Headers(response.headers);
 
@@ -37,10 +39,12 @@ async function handleRequest(request: Request) {
     return new Response(response.body, { ...response, headers });
   }
 
-  const usage = new URL("README.md", import.meta.url);
-  return fetch(usage);
+  const usage = await Deno.readFile("README.md");
+  return new Response(usage, {
+    headers: {
+      "content-type": "text/plain",
+    },
+  });
 }
 
-addEventListener("fetch", (event: FetchEvent) => {
-  event.respondWith(handleRequest(event.request));
-});
+serve(handleRequest);
