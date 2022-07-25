@@ -1,4 +1,4 @@
-import { serve } from "https://deno.land/std@0.140.0/http/server.ts";
+import { serve } from "https://deno.land/std@0.149.0/http/server.ts";
 
 function addCorsIfNeeded(response: Response) {
   const headers = new Headers(response.headers);
