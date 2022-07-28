@@ -18,5 +18,8 @@ jobs:
       - name: Format
         run: deno fmt --check
 
+      - name: Check
+        run: deno check --remote main.ts
+
       - name: Lint
         run: deno lint
