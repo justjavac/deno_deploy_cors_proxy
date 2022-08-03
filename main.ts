@@ -25,8 +25,8 @@ function isUrl(url: string) {
 }
 
 async function handleRequest(request: Request) {
-  const { pathname } = new URL(request.url);
-  const url = pathname.substring(1);
+  const { pathname, search } = new URL(request.url);
+  const url = pathname.substring(1) + search;
 
   if (isUrl(url)) {
     console.log("proxy to %s", url);
