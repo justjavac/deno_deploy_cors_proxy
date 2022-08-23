@@ -75,4 +75,6 @@ async function handleRequest(request: Request) {
   });
 }
 
-serve(handleRequest);
+const port = Deno.env.get("PORT") ?? "8000";
+
+serve(handleRequest, { port: Number(port) });
